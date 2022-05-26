@@ -5,8 +5,12 @@ using namespace stellar::vm;
 int main() {
     stellar::Chunk chunk = stellar::Chunk();
     chunk.writeConstant(1.2, 1);
-    chunk.writeConstant("uwu", 1);
-    chunk.writeInstruction(stellar::OP_RETURN, 1);
+    chunk.writeInstruction(stellar::OP_NEGATE, 1);
+    chunk.writeConstant(7.0, 1);
+    chunk.writeInstruction(stellar::OP_ADD, 1);
+    chunk.writeConstant(false, 2);
+    chunk.writeInstruction(stellar::OP_NOT, 2);
+    chunk.writeInstruction(stellar::OP_RETURN, 2);
 
     Runtime runtime = Runtime(chunk);
     InterpretResult result = runtime.interpret();
